@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "DragonBallKaiUBDUtility": {
+      "commandName": "Project",
+      "commandLineArgs": "dsa-unpack -i .\\archiveDBK.dsa -o ..\\..\\archiveDBK",
+      "workingDirectory": "C:\\Users\\User\\PortableApps\\ROMHacking\\NDSHacking\\games\\dragon-ball\\unpack\\data"
+    },
+    "ConvertDso": {
+      "commandName": "Project",
+      "commandLineArgs": "convert-dso -i .\\101000_maintop.dso -o ..\\..\\101000_maintop.dso",
+      "workingDirectory": "C:\\Users\\User\\PortableApps\\ROMHacking\\NDSHacking\\games\\dragon-ball\\archiveDBK\\res2D\\obj"
+    }
+  }
+}
