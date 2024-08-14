@@ -28,17 +28,29 @@ namespace DragonBallKaiUBDLib
             Height = IO.ReadShort(data, 0x12);
 
             int firstFFLoc = data.FindIndexOfSequence(new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF });
-            int paletteLoc = data.Skip(firstFFLoc + 8).FindIndexOfSequence(new byte[] { 0xFF, 0xFF, 0xFF, 0xFF }) + firstFFLoc + 9;
+            int paletteLoc = IO.ReadInt(data,0x34);
+            int fileStart = IO.ReadInt(data,0x38);
+            int isCompressed = IO.ReadInt(data,0x40);
 
-            for (int i = 0; i < 0x200; i += 2)
+            /*for (int i = 0; i < fileStart; i += 2)
             {
                 short color = BitConverter.ToInt16(data.Skip(i + paletteLoc).Take(2).ToArray());
                 Palette.Add(new SKColor((byte)((color & 0x1F) << 3), (byte)((color >> 5 & 0x1F) << 3), (byte)((color >> 10 & 0x1F) << 3)));
-            }
+            }*/
 
             LZ10 lz10 = new();
-            PixelData = lz10.Decompress([.. data.Skip(paletteLoc + 0x200)]);
-            Data = [.. data.Take(paletteLoc + 0x200).Concat(PixelData)];
+            bool overflow = fileStart>data.Count();
+            if(!(isCompressed == 0x40000000 || isCompressed == 0x00000000))
+            {
+                PixelData = lz10.Decompress([.. data.Skip(fileStart)]);
+                Data = [.. data.Take(fileStart).Concat(PixelData)];
+            }
+            else
+            {
+                PixelData = [.. data.Skip(fileStart)];
+                Data = [..data];
+            }
+            
         }
 
         public SKBitmap GetImage()

@@ -7,13 +7,18 @@
     },
     "ConvertDso": {
       "commandName": "Project",
-      "commandLineArgs": "convert-dso -i .\\211030_button1.dso -o .\\211030_button1decomp.dso",
+      "commandLineArgs": "convert-dso -i .\\211030_button1.dso -o .\\211030_button1test.dso",
       "workingDirectory": "C:\\Users\\oahta\\OneDrive\\Desktop\\ds stuff\\Dragon Ball Kai Ultimate Butouden (English Patch){Fixed} (SNASH)"
     },
     "CompressDso": {
       "commandName": "Project",
       "commandLineArgs": "compress-dso -i .\\211030_button1decomp.dso -o .\\211030_button1comp2.dso",
       "workingDirectory": "C:\\Users\\oahta\\OneDrive\\Desktop\\ds stuff\\Dragon Ball Kai Ultimate Butouden (English Patch){Fixed} (SNASH)"
+    },
+    "ConvertDsoDir": {
+      "commandName": "Project",
+      "commandLineArgs": "convert-dso -id ..\\obj -od ..\\..\\res2D",
+      "workingDirectory": "C:\\Users\\oahta\\OneDrive\\Desktop\\ds stuff\\Dragon Ball Kai Ultimate Butouden (English Patch){Fixed} (SNASH)\\archiveDBK.dsa\\res2D\\obj"
     }
   }
 }
