@@ -1,6 +1,5 @@
 ﻿using DragonBallKaiUBDLib;
 using Mono.Options;
-using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,12 +18,6 @@ namespace DragonBallKaiUBDUtility
                 { "id|input-dir=", "Input directory containing DSO files", id => _inputDirectory = id },
                 { "od|output-dir=", "Output directory for PNG files", od => _outputDirectory = od }
             };
-
-            /*Options = new()
-            {
-                { "i|input=", "Input DSO file", i => _dsoFile = i },
-                { "o|output=", "Output PNG file", o => _outputFile = o },
-            };*/
         }
 
         public override int Invoke(IEnumerable<string> arguments)
@@ -46,21 +39,14 @@ namespace DragonBallKaiUBDUtility
             }
 
             return 0;
-
-            /*DsoTexture dso = new(File.ReadAllBytes(_dsoFile));
-            File.WriteAllBytes(_outputFile, dso.Data);
-            //using FileStream fs = File.Create(_outputFile);
-            //dso.GetImage().Encode(fs, SKEncodedImageFormat.Png, 1);
-
-            return 0;*/
         }
 
         private void ProcessFile(string inputFile, string outputFile)
         {
-            DsoTexture dso = new(File.ReadAllBytes(inputFile));
+            DsoTexture dso = new(File.ReadAllBytes(inputFile), inputFile);
             File.WriteAllBytes(outputFile, dso.Data);
-            //using FileStream fs = File.Create(_outputFile);
-            //dso.GetImage().Encode(fs, SKEncodedImageFormat.Png, 1);
+            using FileStream fs = File.Create(Path.Combine(Path.GetDirectoryName(outputFile), $"{Path.GetFileNameWithoutExtension(outputFile)}.png"));
+            dso.GetImage().Encode(fs, SkiaSharp.SKEncodedImageFormat.Png, 1);
         }
 
         private void ProcessDirectory(string inputDirectory, string outputDirectory)
@@ -68,7 +54,7 @@ namespace DragonBallKaiUBDUtility
             var dsoFiles = Directory.GetFiles(inputDirectory, "*.dso");
             foreach (var dsoFile in dsoFiles)
             {
-                var outputFileName = Path.GetFileNameWithoutExtension(dsoFile) + ".dso";
+                var outputFileName = Path.GetFileName(dsoFile);
                 var outputFilePath = Path.Combine(outputDirectory, outputFileName);
                 ProcessFile(dsoFile, outputFilePath);
             }

@@ -7,8 +7,8 @@
     },
     "ConvertDso": {
       "commandName": "Project",
-      "commandLineArgs": "convert-dso -i .\\211030_button1.dso -o .\\211030_button1test.dso",
-      "workingDirectory": "C:\\Users\\oahta\\OneDrive\\Desktop\\ds stuff\\Dragon Ball Kai Ultimate Butouden (English Patch){Fixed} (SNASH)"
+      "commandLineArgs": "convert-dso -id .\\ -od ..\\..\\..\\obj_decompressed",
+      "workingDirectory": "C:\\Users\\User\\PortableApps\\ROMHacking\\NDSHacking\\games\\dragon-ball\\archiveDBK\\res2D\\obj"
     },
     "CompressDso": {
       "commandName": "Project",

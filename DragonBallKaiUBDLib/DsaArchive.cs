@@ -13,8 +13,6 @@ namespace DragonBallKaiUBDLib
         public int Unknown04 { get; set; }
         public int FirstFileOffset { get; set; }
         public int NumDirectories { get; set; }
-        public int FirstFileIndex { get; set; }
-        public int NumRootFiles { get; set; }
         public int FileEntryTableOffset => START_OFFSET + 0x0C * NumDirectories;
 
         public List<FolderInArchive> Folders { get; set; } = [];
