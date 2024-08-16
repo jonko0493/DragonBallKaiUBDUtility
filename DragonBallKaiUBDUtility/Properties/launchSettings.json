@@ -19,6 +19,11 @@
       "commandName": "Project",
       "commandLineArgs": "convert-dso -id ..\\obj -od ..\\..\\res2D",
       "workingDirectory": "C:\\Users\\oahta\\OneDrive\\Desktop\\ds stuff\\Dragon Ball Kai Ultimate Butouden (English Patch){Fixed} (SNASH)\\archiveDBK.dsa\\res2D\\obj"
+    },
+    "ConvertDsb": {
+      "commandName": "Project",
+      "commandLineArgs": "convert-dsb -i .\\archiveDBK\\res2D\\bg -o .\\bg_decompressed",
+      "workingDirectory": "C:\\Users\\User\\PortableApps\\ROMHacking\\NDSHacking\\games\\dragon-ball"
     }
   }
 }

@@ -9,6 +9,7 @@ namespace DragonBallKaiUBDUtility
             CommandSet commands = new("DragonBallKaiUBDUtility")
             {
                 new CompressDsoCommand(),
+                new ConvertDsbCommand(),
                 new ConvertDsoCommand(),
                 new DsaUnpackCommand(),
             };
